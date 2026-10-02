@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  /* PRD §12.2 design tokens */
+  --color-primary: #db2777;
+  --color-primary-hover: #be185d;
+  --color-primary-soft: #fdf2f8;
+  --color-secondary: #7c3aed;
+  --color-secondary-soft: #f5f3ff;
+  --color-text: #111827;
+  --color-text-secondary: #374151;
+  --color-text-tertiary: #6b7280;
+  --color-background: #ffffff;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-success: #15803d;
+  --color-success-soft: #dcfce7;
+  --color-warning: #b45309;
+  --color-warning-soft: #fef3c7;
+  --color-error: #dc2626;
+  --color-error-soft: #fee2e2;
+  --color-info: #0f766e;
+  --color-info-soft: #ccfbf1;
+
+  --font-display: var(--font-display-face), "Inter", system-ui, sans-serif;
+  --font-sans: var(--font-body-face), "Inter", system-ui, sans-serif;
+
+  --radius-card: 8px;
+  --radius-pill: 24px;
+  --radius-input: 4px;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Accessibility: visible focus rings everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Minimum touch targets for interactive controls */
+button,
+[role="button"],
+a.btn,
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: 44px;
+}
+button.btn-compact,
+a.btn-compact,
+.btn-compact button {
+  min-height: 0;
+}
+
+/* Hide scrollbars on horizontal shelves while keeping scroll */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse-heart {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-heart {
+  animation: pulse-heart 300ms ease-out;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 200ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Safe-area padding for bottom nav on iOS web */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
